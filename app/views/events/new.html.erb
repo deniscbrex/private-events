@@ -1,0 +1,15 @@
+<h1>Create an event</h1>
+<%= render 'shared/flash' %>
+<%= form_for @event do |f| %>
+  <%= f.text_area :description, placeholder: "Describe this event" %>
+
+  <h3>Select Attendees:</h3>
+  <% @users.each do |user| %>
+    <%= f.check_box :attendees,{multiple: true}, user, false %>
+    <%= f.label user %>
+    <br>
+  <% end %>
+  <br>
+  <%= f.submit %> 
+<% end %>
+<p><%= link_to 'View all events', events_url %></p>

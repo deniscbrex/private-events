@@ -1,0 +1,13 @@
+<h3><%= @user.name %>'s Events</h3>
+
+<% @user.events.each do |event| %>
+  <%= link_to event.description, event_path(event) %>
+<% end %>
+
+<hr>
+
+<h3><%= @user.name %>'s Invitations</h3>
+
+<% @user.attended_events.each do |event| %>
+  <%= link_to event.description, event_path(event) %>
+<% end %>

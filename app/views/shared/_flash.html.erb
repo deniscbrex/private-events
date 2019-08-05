@@ -1,0 +1,3 @@
+<% flash.each do |flash_type, flash_msg| %>
+<%= content_tag :em, flash_msg, class: flash_type %>
+<% end %>
