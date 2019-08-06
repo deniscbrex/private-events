@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :ensure_unique_user, only: [:create]
+  before_action :ensure_logged_in, only: [:show]
 
   def new
     @user = User.new

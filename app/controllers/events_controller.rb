@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :fetch_users, only: [:new, :create]
   before_action :ensure_unique_event, only: [:create]
+  before_action :ensure_logged_in, only: [:show]
 
   def new
     @event = Event.new
