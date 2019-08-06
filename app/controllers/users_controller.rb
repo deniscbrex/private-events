@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    if @user = User.create(user_params)
+    @user = User.create(user_params)
+    if @user.save
       log_in @user
       flash[:success] = "Logged in successfully"
       redirect_to root_url

@@ -1,4 +1,7 @@
 <h1>Create an event</h1>
+
+<%= render 'shared/error', errors: @event.errors %>
+
 <%= form_for @event do |f| %>
   <%= f.label :description %>
   <br>
