@@ -14,7 +14,7 @@ end
   event_date = Faker::Time.between(from: DateTime.now - rand(100), to: DateTime.now + rand(100), format: :long)
   event = user.events.create(description: event_desc, date: event_date, location: event_address)
 
-  attendees = User.offset(rand(14)).first(rand(12))
+  attendees = User.where.not(id: user.id).offset(rand(14)).first(rand(12))
   attendees.each do |attendee|
     attendee.attended_events << event
   end
