@@ -2,6 +2,7 @@
   <h1><%=@event.description%></h1>
   <p>Date: <%= @event.date.to_formatted_s(:long_ordinal) %></p>
   <p>Location: <%= @event.location %></p>
+  <p>Creator: <em> <%= link_to @event.creator.name, user_path(@event.creator) %> </em> </p>
 
   <h3>Attendees: </h3>
   <ol>
@@ -13,4 +14,4 @@
 <% else %>
   <h5>Sorry, you are not invited to this event!</h5>
 <% end %>
-<%= link_to 'Back my profile', user_path(current_user) %>
+<%= link_to 'Back to my profile', user_path(current_user) %>

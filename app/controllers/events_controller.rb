@@ -42,7 +42,9 @@ class EventsController < ApplicationController
 
   def create_attendees
     params[:event][:attendees].each do |name|
-      User.find_by(name: name).attended_events << @event
+      if @user = User.find_by(name: name).attended_events
+        @user << @event
+      end
     end
   end
 

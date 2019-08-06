@@ -8,5 +8,4 @@ class Event < ApplicationRecord
 
   scope :past, -> { where("date < ?", Time.current) }
   scope :future, -> { where("date > ?", Time.current) }
-  # default_scope -> { joins(:invitations) }
 end

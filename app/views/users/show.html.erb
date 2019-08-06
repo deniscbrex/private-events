@@ -1,15 +1,5 @@
 <h3><%= @user.name %>'s Events</h3>
 
-<ol>
-  <% @user.events.each do |event| %>
-    <li> <%= link_to event.description, event_path(event) %> </li>
-  <% end %>
-</ol>
-
-<hr>
-
-<h3><%= @user.name %>'s Invitations</h3>
-
 <h4>Upcoming Events:</h4>
 <ol>
   <% @user.upcoming_events.each do |event| %>
@@ -20,6 +10,24 @@
 <h4>Previous Events:</h4>
 <ol>
   <% @user.previous_events.each do |event| %>
+    <li><%= link_to event.description, event_path(event) %> </li>
+  <% end %>
+</ol>
+
+<hr>
+
+<h3><%= @user.name %>'s Invitations</h3>
+
+<h4>Upcoming Invitations:</h4>
+<ol>
+  <% @user.upcoming_invitations.each do |event| %>
+    <li> <%= link_to event.description, event_path(event) %> </li>
+  <% end %>
+</ol>
+
+<h4>Previous Invitations:</h4>
+<ol>
+  <% @user.previous_invitations.each do |event| %>
     <li><%= link_to event.description, event_path(event) %> </li>
   <% end %>
 </ol>
