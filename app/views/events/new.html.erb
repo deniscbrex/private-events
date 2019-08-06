@@ -2,11 +2,13 @@
 <%= render 'shared/flash' %>
 <%= form_for @event do |f| %>
   <%= f.text_area :description, placeholder: "Describe this event" %>
-
+  <br>
+  <%= f.label :date %>
+  <%= f.date_field :date %>
   <h3>Select Attendees:</h3>
   <% @users.each do |user| %>
     <%= f.check_box :attendees,{multiple: true}, user, false %>
-    <%= f.label user %>
+    <%= f.label user, for: "event_attendees_#{user.parameterize.underscore}" %>
     <br>
   <% end %>
   <br>

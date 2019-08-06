@@ -1,9 +1,9 @@
 class EventsController < ApplicationController
+  before_action :fetch_users, only: [:new, :create]
   before_action :ensure_unique_event, only: [:create]
 
   def new
     @event = Event.new
-    @users = User.where.not('id = ?', current_user.id).pluck(:name)
   end
 
   def create
@@ -29,7 +29,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.required(:event).permit(:description)
+    params.required(:event).permit(:description, :date)
   end
 
   def ensure_unique_event
@@ -44,5 +44,9 @@ class EventsController < ApplicationController
     params[:event][:attendees].each do |name|
       User.find_by(name: name).attended_events << @event
     end
+  end
+
+  def fetch_users
+    @users = User.other_users(current_user).pluck(:name)
   end
 end

@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if @user = auth_user(params[:name].capitalize)
       log_in @user
       flash[:success] = "Login Successful!"
-      redirect_to root_url
+      redirect_to user_path(@user)
     else
       flash.now[:danger] = "You are not a member!"
       render :new

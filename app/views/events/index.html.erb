@@ -1,3 +1,11 @@
 <h1>All Events</h1>
 
-<%= render @events %>
+<h4>Upcoming Events:<h4>
+<ol>
+  <%= render @events.future %>
+</ol>
+
+<h4>Past Events:<h4>
+<ol>
+  <%= render @events.past %>
+</ol>

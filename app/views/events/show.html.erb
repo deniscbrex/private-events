@@ -1,10 +1,16 @@
-<h1><%=@event.description%></h1>
-<p>Date: <%= @event.date %></p>
-<p>Location: Unknown</p>
+<% if @event.attendees.include?(current_user) || @event.creator == current_user %>
+  <h1><%=@event.description%></h1>
+  <p>Date: <%= @event.date.to_formatted_s(:long_ordinal) %></p>
+  <p>Location: <%= @event.location %></p>
 
-<h3>Attendees: </h3>
-<% @event.attendees.each do |attendee| %>
-  <li> <%= link_to attendee.name, user_path(attendee) %> </li>
+  <h3>Attendees: </h3>
+  <ol>
+    <% @event.attendees.each do |attendee| %>
+      <li> <%= link_to attendee.name, user_path(attendee) %> </li>
+    <% end %>
+  </ol>
+
+<% else %>
+  <h5>Sorry, you are not invited to this event!</h5>
 <% end %>
-
-<%= link_to 'Back to events', events_path %>
+<%= link_to 'Back my profile', user_path(current_user) %>
