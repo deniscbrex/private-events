@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
   before_action :fetch_users, only: [:new, :create]
-  before_action :ensure_unique_event, only: [:create]
   before_action :ensure_logged_in, only: [:show]
 
   def new
@@ -30,15 +29,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.required(:event).permit(:description, :date)
-  end
-
-  def ensure_unique_event
-    if Event.find_by(description: params[:event][:description])
-      flash.now[:info] = "It appears you had already created this event"
-      @event = Event.new(event_params)
-      render :new
-    end
+    params.required(:event).permit(:description, :date, :location)
   end
 
   def create_attendees

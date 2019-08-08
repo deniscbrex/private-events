@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   validates :description, presence: true, length: {within: 2..255}
   validates :date, presence: true
   validates :location, presence: true, length: {within: 2..255}
+  validates_uniqueness_of :description
 
   belongs_to :creator, class_name: 'User'
 

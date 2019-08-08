@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if @user = auth_user(params[:name].capitalize)
+    if @user = User.find_by(name: params[:name].capitalize)
       log_in @user
       flash[:success] = "Login Successful!"
       redirect_to user_path(@user)

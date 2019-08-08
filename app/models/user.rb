@@ -2,6 +2,7 @@ class User < ApplicationRecord
   before_save { name.capitalize! }
   
   validates :name, presence: true, length: {within: 3..50}
+  validates_uniqueness_of :name
 
   has_many :events, foreign_key: :creator_id, dependent: :destroy
 
