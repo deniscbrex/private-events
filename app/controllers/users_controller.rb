@@ -31,12 +31,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name)
   end
-
-  def ensure_unique_user
-    if User.find_by(name: params[:user][:name].capitalize)
-      flash.now[:danger] = "User already exit; kindly login below"
-      @user = User.new
-      render :new
-    end
-  end
 end
