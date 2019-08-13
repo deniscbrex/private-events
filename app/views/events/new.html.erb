@@ -1,0 +1,27 @@
+<h1>Create an event</h1>
+
+<%= render 'shared/error', errors: @event.errors %>
+
+<%= form_for @event do |f| %>
+  <%= f.label :description %>
+  <br>
+  <%= f.text_area :description, placeholder: "Describe this event" %>
+  <br>
+  <%= f.label :location %>
+  <br>
+  <%= f.text_field :location, placeholder: "Address of this event" %>
+  <br>
+  <%= f.label :date %>
+  <br>
+  <%= f.date_field :date %>
+
+  <h3>Select Attendees:</h3>
+  <% @users.each do |user| %>
+    <%= f.check_box :attendees,{multiple: true}, user, false %>
+    <%= f.label user, for: "event_attendees_#{user.parameterize.underscore}" %>
+    <br>
+  <% end %>
+  <br>
+  <%= f.submit %> 
+<% end %>
+<p><%= link_to 'View all events', events_url %></p>

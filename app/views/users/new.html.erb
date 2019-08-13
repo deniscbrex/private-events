@@ -1,0 +1,11 @@
+<h1>Sign Up</h1>
+
+<%= render 'shared/error', errors: @user.errors%>
+
+<%= form_for @user do |f| %>
+  <%= f.text_field :name, placeholder: "Enter your name" %>
+
+  <%= f.submit 'Become a member' %>
+<% end %>
+
+<p>Already a member? <%= link_to 'Log in', login_path %></p>
