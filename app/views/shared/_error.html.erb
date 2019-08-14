@@ -1,0 +1,8 @@
+<% if errors.any? %>
+<ul>
+  <% errors.full_messages.each do |msg| %>
+    <%= content_tag :li, msg %>
+  <% end %>
+</ul>
+
+<% end %>
